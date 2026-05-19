@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="currency">
+            <group id="cnb" translate="label" sortOrder="47" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Czech National Bank (CNB)</label>
+                <field id="source_url" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Rates Source URL</label>
+                    <comment>URL with the CNB daily exchange rate text file.</comment>
+                </field>
+                <field id="timeout" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Connection Timeout in Seconds</label>
+                    <validate>validate-zero-or-greater validate-digits</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
