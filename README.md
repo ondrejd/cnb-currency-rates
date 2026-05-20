@@ -12,51 +12,29 @@ php bin/magento setup:upgrade
 php bin/magento cache:flush
 ```
 
-### Přes Composer ze ZIP archívu
-
-- `CnbCurrencyRates.zip`
+### Přes Composer
 
 Aktualizujte `composer.json`:
 
 ```json
 {
-  "repositories": {
-    "cnbcurrencyrates-zip": {
-      "type": "package",
-      "package": {
-        "name": "cnbcurrencyrates/module-cnb-currency-rates",
-        "version": "1.0.0",
-        "type": "magento2-module",
-        "dist": {
-          "url": "file:///absolute/path/to/CnbCurrencyRates.zip",
-          "type": "zip"
-        },
-        "autoload": {
-          "files": ["registration.php"],
-          "psr-4": {
-            "CnbCurrencyRates\\CnbCurrencyRates\\": ""
-          }
-        }
-      }
-    }
+  "require": {
+    "cnbcurrencyrates/module-cnb-currency-rates": "dev-main"
   }
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/ondrejd/cnb-currency-rates"
+    }
+  ]
 }
 ```
 
 Poté je třeba modul nainstalovat a povolit:
 
 ```bash
-composer require cnbcurrencyrates/module-cnb-currency-rates:1.0.0
+composer require cnbcurrencyrates/module-cnb-currency-rates:dev-main
 php bin/magento module:enable CnbCurrencyRates
 php bin/magento setup:upgrade
 php bin/magento cache:flush
 ```
-
-## Použití v administraci
-
-1. `Stores > Currency Rates`.
-2. `Import Service`, vyberte `Czech National Bank (CNB)`.
-3. Klikněte na `Import`.
-4. Kliněte na `Save Currency Rates`.
-
-Službu pro stahování kurzů lze nastavit i na Cron.
