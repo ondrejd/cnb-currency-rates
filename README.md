@@ -1,84 +1,22 @@
-# CnbCurrencyRates
+# Cnb Currency Rates
 
-Magento 2 module adding a new currency import service based on Czech National Bank (CNB) daily rates.
+Modul pro Magento 2, který přidává službu pro kurzy měn stahované z České národní banky ([odkaz](https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt)).
 
-## What it does
+## Instalace
 
-- Registers a new import service `cnb` in Magento currency import services.
-- Downloads and parses CNB daily rates from:
-  - https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt
-- Converts CNB values to Magento currency-rate matrix format.
-- Makes the service available in Admin currency rates import UI.
-
-## Module structure
-
-- `registration.php`
-- `etc/module.xml`
-- `etc/di.xml`
-- `etc/config.xml`
-- `etc/adminhtml/system.xml`
-- `Model/Currency/Import/Cnb.php`
-
-## Configuration
-
-Admin path:
-
-- `Stores > Configuration > Currency Setup > Czech National Bank (CNB)`
-
-Fields:
-
-- `Rates Source URL`
-- `Connection Timeout in Seconds`
-
-Default values are provided in `etc/config.xml`.
-
-## Enable module
-
-Run in Docker PHP container:
+### Přes CLI
 
 ```bash
-docker compose exec phpfpm php bin/magento module:enable CnbCurrencyRates
-docker compose exec phpfpm php bin/magento setup:upgrade
-docker compose exec phpfpm php bin/magento cache:flush
-```
-
-## Install via Composer
-
-This module is Composer-ready as package:
-
-- `cnbcurrencyrates/module-cnb-currency-rates`
-
-For other Magento projects, add repository and require the package.
-
-Example for VCS repository:
-
-```bash
-composer config repositories.cnbcurrencyrates-cnb-currency-rates vcs <git-repository-url>
-composer require cnbcurrencyrates/module-cnb-currency-rates
 php bin/magento module:enable CnbCurrencyRates
 php bin/magento setup:upgrade
 php bin/magento cache:flush
 ```
 
-Example for local path repository:
-
-```bash
-composer config repositories.cnbcurrencyrates-cnb-currency-rates path ./app/code/CnbCurrencyRates/CnbCurrencyRates
-composer require cnbcurrencyrates/module-cnb-currency-rates:*
-php bin/magento module:enable CnbCurrencyRates
-php bin/magento setup:upgrade
-php bin/magento cache:flush
-```
-
-## Install from ZIP via Composer
-
-Composer can also install this module directly from a ZIP file.
-
-Given ZIP file in project root:
+### Přes Composer ze ZIP archívu
 
 - `CnbCurrencyRates.zip`
 
-Add repository definition in target Magento project `composer.json`:
+Aktualizujte `composer.json`:
 
 ```json
 {
@@ -105,7 +43,7 @@ Add repository definition in target Magento project `composer.json`:
 }
 ```
 
-Then install and enable:
+Poté je třeba modul nainstalovat a povolit:
 
 ```bash
 composer require cnbcurrencyrates/module-cnb-currency-rates:1.0.0
@@ -114,14 +52,11 @@ php bin/magento setup:upgrade
 php bin/magento cache:flush
 ```
 
-## Use in Admin UI
+## Použití v administraci
 
-1. Open `Stores > Currency Rates`.
-2. In `Import Service`, select `Czech National Bank (CNB)`.
-3. Click `Import`.
-4. Click `Save Currency Rates`.
+1. `Stores > Currency Rates`.
+2. `Import Service`, vyberte `Czech National Bank (CNB)`.
+3. Klikněte na `Import`.
+4. Kliněte na `Save Currency Rates`.
 
-## Notes
-
-- CNB rates are published against CZK and module computes cross-rates for Magento currencies.
-- If a currency is not present in CNB feed, the rate is returned as empty and warning messages are collected.
+Službu pro stahování kurzů lze nastavit i na Cron.

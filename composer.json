@@ -1,7 +1,13 @@
 {
     "name": "cnbcurrencyrates/module-cnb-currency-rates",
-    "description": "Magento 2 currency import service for Czech National Bank (CNB)",
+    "description": "Rozšíření pro Magento, které doplňuje Českou národní banku jako zdroj pro kurzy měn.",
     "type": "magento2-module",
+    "authors": [
+        {
+            "name": "Ondřej Doněk",
+            "email": "ondrejd@gmail.com"
+        }
+    ],
     "license": [
         "proprietary"
     ],

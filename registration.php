@@ -1,8 +1,4 @@
 <?php
-/**
- * Copyright (c) CnbCurrencyRates
- */
-
 use Magento\Framework\Component\ComponentRegistrar;
 
 ComponentRegistrar::register(
